@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="Test robots.txt rules against major search and AI crawlers and understand the implications." />
+  <title>AI & Search Robots.txt Tester | Chris Green</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="brandbar">
+      <a class="brand" href="https://www.chris-green.net" target="_blank" rel="noreferrer">CHRIS GREEN</a>
+      <span class="brand-sub">SEO / SEARCH TOOLS</span>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">ROBOTS.TXT · SEARCH · AI</p>
+        <h1>AI &amp; Search<br>Robots.txt Tester</h1>
+        <p class="lede">Test a live or proposed robots.txt file against major search and AI crawlers, then see what each rule actually means.</p>
+      </section>
+
+      <section class="panel input-panel">
+        <div class="tabs" role="tablist">
+          <button id="fetch-tab" class="active">Fetch live</button>
+          <button id="paste-tab">Paste robots.txt</button>
+        </div>
+        <div id="fetch-row" class="field-row">
+          <label><span>Website or robots.txt URL</span><input id="site-input" placeholder="https://example.com"></label>
+          <button id="fetch-btn" class="primary fetch">Fetch</button>
+        </div>
+        <div id="error" class="error" hidden></div>
+        <p id="source-line" class="source-line" hidden></p>
+        <label class="stacked"><span>Robots.txt</span><textarea id="robots" class="robots" spellcheck="false">User-agent: *
+Allow: /</textarea></label>
+        <label class="stacked"><span>URLs to test <small>one per line</small></span><textarea id="targets" class="targets" spellcheck="false">/</textarea></label>
+        <button id="analyse-btn" class="primary analyse">Analyse access</button>
+      </section>
+
+      <div id="results"></div>
+      <footer>
+        <p>Robots.txt expresses crawler preferences; it is not an access-control mechanism. Results describe documented crawler behaviour, not guaranteed indexing, ranking, citation or model usage.</p>
+        <p>Bot definitions last reviewed 16 August 2026.</p>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
