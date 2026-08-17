@@ -1,63 +1,67 @@
-# AI & Search Robots.txt Tester
+# Robots Path
 
-A branded web app for testing robots.txt rules against major search and AI crawler/control tokens, with plain-English implications.
+A static React tool for testing pasted `robots.txt` rules against major search and AI crawler tokens, then explaining the likely product implications of allowing or blocking them.
 
-## Features
+## What it does
 
-- Fetch a live `/robots.txt` through a Cloudflare Pages Function, avoiding browser CORS limitations.
-- Paste robots.txt content to test proposed or staging rules.
-- Test one URL or a batch of URLs.
-- Show the matching user-agent group and exact Allow/Disallow rule behind each result.
-- Separate search crawling, AI search/retrieval, model-development controls and user-initiated fetchers.
-- Explicitly explain Google Search, AI Overviews and AI Mode implications.
-- Keep crawler/product knowledge in `site/data/bots.js`, separate from parser logic.
+- Paste a `robots.txt` file into the browser.
+- Test one or more full URLs, or paths when a site origin is supplied.
+- Evaluate matching `Allow` and `Disallow` rules for major crawler/control tokens.
+- Show the exact matching user-agent group and rule.
+- Explain implications for Google Search, AI Overviews, AI Mode, ChatGPT Search, Claude, Perplexity, model-training crawlers and more.
+- Runs entirely client-side. No pasted data is sent to a backend.
 
-## Local tests/build
+## Local development
 
-No application dependencies are required.
+```bash
+npm install
+npm run dev
+```
+
+Tests:
 
 ```bash
 npm test
-npm run build
 ```
 
-To run the full app including the `/api/robots` Pages Function, use Cloudflare Wrangler:
+Production build:
 
 ```bash
 npm run build
-npx wrangler pages dev dist
+npm run preview
 ```
 
-## Deploy with GitHub Actions
+## GitHub Pages deployment
 
-The included workflow deploys every push to `main` to a Cloudflare Pages project named `robots-ai-tester`.
+This repository is configured for the project URL:
 
-Add these GitHub repository secrets:
+`https://chr156r33n.github.io/robots-path/`
 
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
+`vite.config.js` therefore uses `base: '/robots-path/'`.
 
-Create/attach a Cloudflare Pages custom domain such as `robots.chris-green.net`.
+In GitHub, go to **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**. Every push to `main` will then test, build and deploy the `dist` directory.
 
-## Embed on Chris-Green.net
+If the repository name changes, update the `base` value in `vite.config.js`. If the app later moves to a custom domain, use `base: '/'` instead.
+
+## Embedding
+
+Once deployed, it can be embedded into another site with an iframe:
 
 ```html
 <iframe
-  src="https://robots.chris-green.net"
-  title="AI & Search Robots.txt Tester"
+  src="https://chr156r33n.github.io/robots-path/"
   width="100%"
-  height="1200"
-  style="border:0;width:100%;"
-  loading="lazy">
-</iframe>
+  height="1400"
+  style="border:0"
+  loading="lazy"
+  title="Robots Path"
+></iframe>
 ```
 
-`site/_headers` restricts framing to `chris-green.net` and `www.chris-green.net`. Add any staging/editor domains before embedding there.
+## Updating crawler knowledge
 
-## Maintaining crawler definitions
+Crawler definitions and implications live in `src/data/bots.js`. Keep provider documentation URLs and `verified` dates current when changing them.
 
-Definitions live in `site/data/bots.js`. Each contains the robots token, operator, category, affected products, allow/block implications, official source, review date, and caveats.
+## Important caveat
 
-## Important limitation
-
-Robots.txt is a crawler preference mechanism, not access control. An Allowed result does not guarantee indexing, ranking, citation, retrieval or model usage. A Blocked result means the tested rules request that the named crawler/token not access/use that URL according to the provider's documented behaviour.
+This tool evaluates robots.txt instructions and documented crawler purposes. Robots.txt is not access control, and an allowed crawler does not guarantee indexing, citation, ranking, retrieval or model use.
