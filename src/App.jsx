@@ -304,11 +304,7 @@ export default function App() {
         </form>
 
         <aside className="panel explainer">
-          <p className="eyebrow">
-            How to read this
-          </p>
-
-          <h2>Access is not one thing</h2>
+          <h2>"Can bots access it?" is not as simple anymore</h2>
 
           <p>
             A blocked search crawler can affect index
