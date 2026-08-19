@@ -212,19 +212,6 @@ export default function App() {
   return (
     <main>
       <header className="hero shell">
-        <a
-          className="brand"
-          href="https://www.chris-green.net"
-          target="_top"
-          rel="noreferrer"
-        >
-          CHRIS GREEN
-        </a>
-
-        <p className="eyebrow">
-          Search & AI crawler governance
-        </p>
-
         <h1>Robots Path</h1>
 
         <p className="lede">
@@ -367,6 +354,14 @@ export default function App() {
               />
             ))}
           </div>
+          <div>        <a
+          className="brand"
+          href="https://www.chris-green.net"
+          target="_top"
+          rel="noreferrer"
+        >
+          CHRIS GREEN
+        </a></div>
         </section>
       ))}
 
